@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>La Porta Homes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* VOICE: calm, honest hospitality — every promise has a proof beside it.
+   IDEA: "La Porta" = the door. Every photo sits in an arched Nubian doorway, like El Gouna's domed houses.
+   PICTURE: the hero is the villa pool at sunset inside a tall arch, a second arch overlapping it.
+   COLOUR and TYPE: white ground, Red Sea deep blue as the dominant field, warm sand support, sunset coral accent. Marcellus + Manrope.
+   LAYOUT: mobile first; hero stacks title, arch photo, search. Unit pages open on #u-<id>. */
+:root{color-scheme:light dark;
+--bg:light-dark(#ffffff,#0c1d24);--ink:light-dark(#13262d,#eef3f2);--mut:light-dark(#5b6b70,#a9b8bb);
+--sea:light-dark(#0b4f63,#0f6178);--sea-ink:#ffffff;--sand:light-dark(#efe3cf,#2a2a22);--sand-ink:light-dark(#3a2f1e,#efe3cf);
+--coral:#e2603f;--line:light-dark(#e3e8e8,#22363d);--card:light-dark(#ffffff,#12262e)}
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+html{scroll-padding-top:72px}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 Manrope,system-ui,sans-serif;overflow-x:clip}
+h1,h2,h3{font-family:Marcellus,Georgia,serif;font-weight:400;line-height:1.08;text-wrap:balance;margin:0}
+h1{font-size:clamp(34px,6vw,52px)}h2{font-size:clamp(28px,4vw,40px)}h3{font-size:21px}
+a{color:inherit}
+.band{padding:clamp(32px,5vw,72px) max(5vw,16px)}
+.wrap{max-width:1240px;margin:0 auto}
+.arch{border-radius:999px 999px 14px 14px;overflow:hidden;background:var(--sand)}
+.arch img,.ph img{display:block;width:100%;height:100%;object-fit:cover}
+button,.btn{font:600 16px/1 Manrope,sans-serif;border:0;border-radius:999px;padding:14px 22px;min-height:48px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:8px}
+.btn-c{background:var(--coral);color:#fff}.btn-o{background:transparent;color:inherit;box-shadow:inset 0 0 0 1.5px currentColor}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--coral);outline-offset:2px}
+/* header */
+.top{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;gap:16px;padding:10px max(5vw,16px);flex-wrap:wrap}
+.mark{font-family:Marcellus,serif;font-size:22px;text-decoration:none;display:flex;align-items:center;gap:10px}
+.mark svg{width:22px;height:28px;flex:none}
+.top nav{display:flex;gap:18px;margin-inline-start:auto;flex-wrap:wrap}
+.top nav a{text-decoration:none;font-weight:600;font-size:15px;padding:10px 0}
+/* hero */
+.hero{background:var(--sea);color:var(--sea-ink)}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:clamp(24px,4vw,56px);align-items:center}
+.hero p.lead{font-size:18px;max-width:34em;opacity:.92;margin:18px 0 26px}
+.duo{position:relative;height:clamp(380px,46vw,560px)}
+.duo .a1{position:absolute;inset:0 18% 0 0}
+.duo .a2{position:absolute;right:0;bottom:-6%;width:44%;height:58%;box-shadow:0 0 0 8px var(--sea)}
+.search{background:var(--bg);color:var(--ink);border-radius:20px;padding:14px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr)) auto;gap:10px;align-items:end}
+label{display:grid;gap:4px;font-size:13px;font-weight:600;color:var(--mut)}
+input,select,textarea{font:16px Manrope,sans-serif;color:var(--ink);background:var(--bg);border:1.5px solid var(--line);border-radius:12px;padding:11px 12px;min-height:46px;width:100%}
+/* trust */
+.trust{background:var(--sand);color:var(--sand-ink)}
+.trust .wrap{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
+.trust b{display:block;font-family:Marcellus,serif;font-size:30px;font-weight:400;line-height:1.1}
+.trust span{font-size:14px}
+.asof{font-size:13px;opacity:.75;margin-top:14px}
+/* collections & stays */
+.head{display:flex;align-items:end;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:24px}
+.head p{margin:8px 0 0;color:var(--mut);max-width:40em}
+.cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
+.col{text-decoration:none;display:grid;gap:12px}
+.col .arch{aspect-ratio:3/4}
+.col small{color:var(--mut);font-size:14px}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--line);padding:10px 16px;min-height:44px}
+.chip[aria-pressed=true]{background:var(--ink);color:var(--bg);box-shadow:none}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:26px 22px}
+.u{text-decoration:none;display:grid;gap:8px}
+.u .arch{aspect-ratio:4/5}
+.u .meta{font-size:14px;color:var(--mut)}
+.u .row{display:flex;justify-content:space-between;gap:10px;align-items:baseline}
+.star{white-space:nowrap;font-size:14px;font-weight:600}
+.empty{padding:30px;text-align:center;color:var(--mut);border:1.5px dashed var(--line);border-radius:16px}
+/* steps / why */
+.three{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:26px}
+.three div{border-top:2px solid var(--ink);padding-top:14px}
+.three p{color:var(--mut);margin:8px 0 0}
+.why{background:var(--sea);color:var(--sea-ink)}.why .three div{border-color:var(--sea-ink)}.why .three p{color:inherit;opacity:.88}
+.owners{background:var(--sand);color:var(--sand-ink)}
+.owners .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px;align-items:center}
+.owners .arch{aspect-ratio:1/1;max-width:420px}
+.note{font-size:13px;color:var(--mut)}
+/* unit view */
+#unit{display:none}
+body.unit-open #home{display:none}body.unit-open #unit{display:block}
+.back{background:none;color:inherit;padding:10px 0;min-height:44px;font-weight:600}
+.gal{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(78%,1fr);gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:8px}
+.gal .ph{scroll-snap-align:start;aspect-ratio:4/3;border-radius:14px;overflow:hidden;background:var(--sand)}
+.gal .ph:first-child{border-radius:999px 999px 14px 14px}
+.ugrid{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:40px;margin-top:28px;align-items:start}
+.facts{display:flex;gap:10px 22px;flex-wrap:wrap;margin:14px 0;color:var(--mut);font-weight:600}
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0}
+.tags span{background:var(--sand);color:var(--sand-ink);border-radius:999px;padding:6px 12px;font-size:14px;font-weight:600}
+.box{border:1.5px solid var(--line);border-radius:20px;padding:20px;display:grid;gap:12px;background:var(--card);position:sticky;top:84px}
+.two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px}
+.out{background:var(--sand);color:var(--sand-ink);border-radius:14px;padding:14px;white-space:pre-wrap;font-size:15px}
+.rules li{margin:4px 0}
+@media(min-width:901px){.gal{grid-auto-columns:minmax(38%,1fr)}}
+footer{border-top:1px solid var(--line)}
+footer .wrap{display:flex;gap:20px;justify-content:space-between;flex-wrap:wrap;font-size:14px;color:var(--mut)}
+@media(max-width:900px){.hero .wrap,.ugrid,.owners .wrap{grid-template-columns:minmax(0,1fr)}.box{position:static}.search{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.search button{grid-column:1/-1}}
+@media(max-width:600px){.cols,.three{grid-template-columns:minmax(0,1fr)}.trust .wrap{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.top nav{gap:14px}.top nav a.hide-s{display:none}.duo{height:400px}.col .arch{aspect-ratio:16/11}.u .arch{aspect-ratio:1/1}.search label:nth-of-type(3){grid-column:1/-1}}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="mark" href="#top" aria-label="La Porta Homes home"><svg viewBox="0 0 22 28" aria-hidden="true"><path d="M2 27V11a9 9 0 0 1 18 0v16" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M7 27V13a4 4 0 0 1 8 0v14" fill="none" stroke="var(--coral)" stroke-width="2.2"/></svg>La Porta Homes</a>
+  <nav><a href="#stays">Stays</a><a class="hide-s" href="#how">How we host</a><a href="#owners">Owners</a></nav>
+</div></header>
+
+<main id="home">
+<section class="band hero" id="top"><div class="wrap">
+  <div>
+    <h1>Homes in El Gouna, checked before you arrive</h1>
+    <p class="lead">A UK hospitality brand on the Red Sea. Pool villas, apartments and resort studios, run by one team that answers within the hour.</p>
+    <form class="search" id="search">
+      <label>Check-in<input type="date" id="s-in"></label>
+      <label>Check-out<input type="date" id="s-out"></label>
+      <label>Guests<select id="s-g"><option value="1">1</option><option value="2" selected>2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option></select></label>
+      <button class="btn-c" type="submit">See stays</button>
+    </form>
+  </div>
+  <div class="duo">
+    <div class="arch a1"><img src="img/877272_0.jpg" alt="Private pool of a La Porta villa at sunset"></div>
+    <div class="arch a2"><img src="img/516096_1.jpg" alt="Beachfront pool cabana at dusk"></div>
+  </div>
+</div></section>
+
+<section class="band trust"><div class="wrap">
+  <div><b>Superhost</b><span>status on Airbnb</span></div>
+  <div><b>4.88</b><span>average from 16 guest reviews</span></div>
+  <div><b>&lt; 1 hour</b><span>reply time, 100% response rate</span></div>
+  <div><b>Self check-in</b><span>from 3 pm, check-out by 10 am</span></div>
+</div><div class="wrap asof">Figures from the La Porta Homes host profile on Airbnb, 22 Nov 2026.</div></section>
+
+<section class="band"><div class="wrap">
+  <div class="head"><div><h2>Three ways to stay</h2><p>Every home is cleaned and checked by our team before each arrival.</p></div></div>
+  <div class="cols" id="cols"></div>
+</div></section>
+
+<section class="band" id="stays" style="padding-top:0"><div class="wrap">
+  <div class="head"><div><h2>All stays</h2><p id="count"></p></div>
+    <div class="chips" id="chips" role="group" aria-label="Filter stays"></div></div>
+  <div class="grid" id="grid"></div>
+</div></section>
+
+<section class="band" id="how" style="padding-top:0"><div class="wrap">
+  <div class="head"><h2>How we host</h2></div>
+  <div class="three">
+    <div><h3>Checked before arrival</h3><p>Our team walks through every home before you land: cleaning, linen, Wi-Fi, air conditioning and pool.</p></div>
+    <div><h3>Self check-in</h3><p>Arrive any time from 3 pm. Clear instructions reach you before the day.</p></div>
+    <div><h3>One team, one hour</h3><p>Message us during your stay and a real person replies, usually within the hour.</p></div>
+  </div>
+</div></section>
+
+<section class="band why"><div class="wrap">
+  <div class="head"><div><h2>Why book with us directly</h2><p style="color:inherit;opacity:.85">Same homes, same team, a direct line from the first message.</p></div></div>
+  <div class="three">
+    <div><h3>Talk to the people who host</h3><p>Ask anything before you book: the view, the beds, the walk to the beach.</p></div>
+    <div><h3>Airport pickup on request</h3><p>Hurghada airport transfers can be arranged with your stay.</p></div>
+    <div><h3>Clear terms</h3><p>One final price for your dates, written in your confirmation.</p></div>
+  </div>
+  <p class="note" style="color:inherit;opacity:.8;margin-top:22px">Sample text: direct-booking rates and terms are still being set.</p>
+</div></section>
+
+<section class="band owners" id="owners"><div class="wrap">
+  <div>
+    <h2>Own a home in El Gouna?</h2>
+    <p>We manage holiday homes end to end: listing, pricing, guests, cleaning and checks. Tell us about your home and we will come back with a plan.</p>
+    <form id="ownf" class="box" style="position:static;background:transparent;border-color:currentColor">
+      <label style="color:inherit">Your name<input id="o-n" required autocomplete="name"></label>
+      <label style="color:inherit">Phone or email<input id="o-c" required></label>
+      <label style="color:inherit">Compound and home type<input id="o-h" placeholder="e.g. Mangroovy, 2-bedroom apartment"></label>
+      <button class="btn-c" type="submit">Prepare my message</button>
+      <div id="o-out"></div>
+    </form>
+  </div>
+  <div class="arch"><img src="img/791266_1.jpg" alt="Shaded pool terrace of a La Porta villa"></div>
+</div></section>
+</main>
+
+<main id="unit" class="band"><div class="wrap" id="uwrap"></div></main>
+
+<footer class="band"><div class="wrap">
+  <div><span class="mark" style="font-size:18px">La Porta Homes</span><br>UK hospitality brand, now in El Gouna, Red Sea, Egypt.</div>
+  <div>Company details, policies and contact number: to be added before launch.</div>
+</div></footer>
+
+<script>
+{
+const U=[
+ {id:'877272',t:'3-bedroom villa with private heated pool',c:'villa',loc:'El Gouna area',br:3,beds:6,ba:2,g:6,r:null,cv:0,tags:['Private heated pool','High privacy']},
+ {id:'791266',t:'4-bedroom villa, Ancient Hills',c:'villa',loc:'Ancient Hills',br:4,beds:5,ba:3,g:7,r:'New',cv:0,tags:['Private heated pool']},
+ {id:'781852',t:'Family Camp: 3-bedroom villa with private pool',c:'villa',loc:'Maraya, El Gouna',br:3,beds:5,ba:3.5,g:7,r:null,cv:0,tags:['Private pool','Family size']},
+ {id:'265096',t:'Stylish 2-bedroom, Mangroovy',c:'apt',loc:'Mangroovy, El Gouna',br:2,beds:4,ba:1,g:5,r:null,cv:0,tags:['Beach access','Pool view']},
+ {id:'738710',t:'Stylish 1-bedroom, Shedwan',c:'apt',loc:'Shedwan, El Gouna',br:1,beds:1,ba:1.5,g:3,r:null,cv:1,tags:['Terrace']},
+ {id:'516096',t:'Peaceful 1-bedroom, beachfront',c:'apt',loc:'Beachfront, Hurghada',br:1,beds:2,ba:1,g:3,r:'4.88',cv:1,tags:['Beachfront','Free beach and pool']},
+ {id:'846454',t:'Family studio for 3, rooftop pool',c:'studio',loc:'Imperial Resort, near El Gouna',br:0,beds:2,ba:1,g:3,r:'4.75',cv:1,tags:['Rooftop pool','Sleeps 3']},
+ {id:'110648',t:'Studio 608',c:'studio',loc:'Imperial Resort, near El Gouna',br:0,beds:1,ba:1,g:2,r:'New',cv:3,tags:['4 pools']},
+ {id:'196028',t:'Studio 609',c:'studio',loc:'Imperial Resort, near El Gouna',br:0,beds:1,ba:1,g:2,r:'New',cv:4,tags:['4 pools']},
+ {id:'963584',t:'Studio 611',c:'studio',loc:'Imperial Resort, near El Gouna',br:0,beds:1,ba:1,g:2,r:'New',cv:2,tags:['4 pools']},
+ {id:'076239',t:'Studio 618',c:'studio',loc:'Imperial Resort, near El Gouna',br:0,beds:1,ba:1,g:2,r:'New',cv:2,tags:['4 pools']},
+ {id:'201923',t:'Family studio 613',c:'studio',loc:'Imperial Resort, near El Gouna',br:0,beds:2,ba:1,g:3,r:'New',cv:2,tags:['4 pools','Sleeps 3']},
+ {id:'554967',t:'Family studio 619',c:'studio',loc:'Imperial Resort, near El Gouna',br:0,beds:2,ba:1,g:3,r:'New',cv:1,tags:['4 pools','Sleeps 3']}
+];
+const C={villa:{n:'Pool villas',d:'Private pools, room for families',img:'791266_0'},apt:{n:'Apartments',d:'Mangroovy, Shedwan and the beach',img:'265096_0'},studio:{n:'Resort studios',d:'Imperial Resort, four pools',img:'110648_0'}};
+const $=s=>document.querySelector(s);
+const esc=s=>String(s).replace(/[&<>"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]));
+const img=(u,i)=>`img/${u.id}_${i}.jpg`;
+const rooms=u=>u.br?`${u.br} bedroom${u.br>1?'s':''}`:'Studio';
+let filt='all',minG=1;
+$('#cols').innerHTML=Object.entries(C).map(([k,v])=>`<a class="col" href="#stays" data-f="${k}"><div class="arch"><img loading="lazy" src="img/${v.img}.jpg" alt="${esc(v.n)}"></div><div><h3>${v.n}</h3><small>${U.filter(u=>u.c===k).length} homes · ${v.d}</small></div></a>`).join('');
+const F=[['all','All'],['villa','Pool villas'],['apt','Apartments'],['studio','Studios']];
+function chips(){$('#chips').innerHTML=F.map(([k,n])=>`<button type="button" class="chip" data-f="${k}" aria-pressed="${filt===k}">${n}</button>`).join('')}
+function grid(){
+  const L=U.filter(u=>(filt==='all'||u.c===filt)&&u.g>=minG);
+  $('#count').textContent=`${L.length} of ${U.length} homes`+(minG>1?` for ${minG}+ guests`:'');
+  $('#grid').innerHTML=L.length?L.map(u=>`<a class="u" href="#u-${u.id}"><div class="arch"><img loading="lazy" src="${img(u,u.cv)}" alt="${esc(u.t)}"></div><div class="row"><h3>${esc(u.t)}</h3>${u.r?`<span class="star">★ ${u.r}</span>`:''}</div><div class="meta">${esc(u.loc)} · ${rooms(u)} · ${u.g} guests</div></a>`).join(''):`<div class="empty">No home fits ${minG} guests in this group. Try all stays.</div>`;
+}
+chips();grid();
+document.addEventListener('click',e=>{const b=e.target.closest('[data-f]');if(!b)return;filt=b.dataset.f;chips();grid();});
+const t0=new Date();const d=n=>{const x=new Date(t0);x.setDate(x.getDate()+n);return x.toISOString().slice(0,10)};
+$('#s-in').min=d(1);$('#s-out').min=d(2);
+$('#search').addEventListener('submit',e=>{e.preventDefault();minG=+$('#s-g').value;grid();$('#stays').scrollIntoView();});
+function copyBtn(id,text){return `<div class="out" id="${id}">${esc(text)}</div><button type="button" class="btn-o" data-copy="${id}">Copy message</button><p class="note">The WhatsApp button connects here once the business number is added.</p>`}
+document.addEventListener('click',async e=>{const b=e.target.closest('[data-copy]');if(!b)return;try{await navigator.clipboard.writeText($('#'+b.dataset.copy).textContent);b.textContent='Copied';}catch(_){b.textContent='Select the text above to copy';}});
+$('#ownf').addEventListener('submit',e=>{e.preventDefault();const m=`Hello La Porta Homes,\nI own a home and would like you to manage it.\nName: ${$('#o-n').value}\nContact: ${$('#o-c').value}\nHome: ${$('#o-h').value||'-'}`;$('#o-out').innerHTML=copyBtn('o-msg',m);});
+function unit(u){
+  const ph=[...Array(6).keys()];
+  ph.sort((a,b)=>(a===u.cv?-1:b===u.cv?1:a-b));
+  $('#uwrap').innerHTML=`<button type="button" class="back" id="back">← All stays</button>
+  <div class="gal">${ph.map(i=>`<div class="ph"><img src="${img(u,i)}" alt="${esc(u.t)}, photo ${i+1}"></div>`).join('')}</div>
+  <div class="ugrid"><div>
+    <h1 style="font-size:clamp(30px,5vw,44px)">${esc(u.t)}</h1>
+    <div class="facts"><span>${esc(u.loc)}</span><span>${rooms(u)}</span><span>${u.beds} bed${u.beds>1?'s':''}</span><span>${u.ba} bath${u.ba>1?'s':''}</span><span>Up to ${u.g} guests</span>${u.r?`<span>★ ${u.r}</span>`:''}</div>
+    <div class="tags">${u.tags.map(t=>`<span>${esc(t)}</span>`).join('')}</div>
+    <h3 style="margin-top:22px">Good to know</h3>
+    <ul class="rules"><li>Self check-in from 3 pm to midnight</li><li>Check-out before 10 am</li><li>Checked by our team before you arrive</li></ul>
+    <p class="note">Full description, amenities and map come from the listing in the next round.</p>
+  </div>
+  <form class="box" id="req"><h3>Request these dates</h3>
+    <div class="two"><label>Check-in<input type="date" id="r-in" required min="${d(1)}"></label><label>Check-out<input type="date" id="r-out" required min="${d(2)}"></label></div>
+    <label>Guests<select id="r-g">${[...Array(u.g).keys()].map(i=>`<option ${i+1===Math.min(2,u.g)?'selected':''}>${i+1}</option>`).join('')}</select></label>
+    <label>Your name<input id="r-n" required autocomplete="name"></label>
+    <button class="btn-c" type="submit">Prepare request</button>
+    <p class="note" style="margin:0">We confirm availability and send one final price. Nothing is charged now.</p>
+    <div id="r-out"></div>
+  </form></div>`;
+  $('#back').addEventListener('click',()=>{location.hash='stays';});
+  $('#req').addEventListener('submit',e=>{e.preventDefault();const a=$('#r-in').value,b=$('#r-out').value;if(b<=a){$('#r-out').innerHTML='<p class="note">Check-out must be after check-in.</p>';return;}
+    const m=`Hello La Porta Homes,\nI'd like to request: ${u.t}\nDates: ${a} to ${b}\nGuests: ${$('#r-g').value}\nName: ${$('#r-n').value}`;$('#r-out').innerHTML=copyBtn('r-msg',m);});
+}
+function route(){const m=location.hash.match(/^#u-(\d{6})$/);const u=m&&U.find(x=>x.id===m[1]);
+  if(u){unit(u);document.body.classList.add('unit-open');window.scrollTo(0,0);document.title=u.t+' · La Porta Homes';}
+  else{document.body.classList.remove('unit-open');document.title='La Porta Homes';if(location.hash.length>1){const t=document.getElementById(location.hash.slice(1));if(t)t.scrollIntoView();}}}
+window.addEventListener('hashchange',route);route();
+}
+</script>
+</body>
+</html>
