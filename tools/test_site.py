@@ -1,10 +1,11 @@
 import subprocess, time, os, sys
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 
-OUT = '/home/claude/lp/shots'
+OUT = os.path.join(ROOT, 'shots')
 os.makedirs(OUT, exist_ok=True)
-srv = subprocess.Popen([sys.executable, '-m', 'http.server', '8765'], cwd='/home/claude/lp/site', stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+srv = subprocess.Popen([sys.executable, '-m', 'http.server', '8765'], cwd=ROOT, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 xvfb = subprocess.Popen(['Xvfb', ':99', '-screen', '0', '1400x1000x24'], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 os.environ['DISPLAY'] = ':99'
 time.sleep(2)
